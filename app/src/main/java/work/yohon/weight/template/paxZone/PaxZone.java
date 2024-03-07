@@ -6,6 +6,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -133,6 +135,117 @@ public class PaxZone {
             }
         });
 
+        txtPaxOATotal.addTextChangedListener(new TextWatcher() {
+
+            private PaxZoneDto paxZoneDto = PaxZone.this.paxZoneDto;
+            private String preText;
+            private AppCompatActivity thisContext = PaxZone.this.context;
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                preText = charSequence.toString();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (!charSequence.toString().equals("")) {
+                    EditText txtIndex            = (EditText) Utils.findViewId(thisContext, "txtIndex");
+                    EditText txtCargCpt1Deadload = (EditText) Utils.findViewId(thisContext, "txtCargCpt1Deadload");
+                    EditText txtCargCpt2Deadload = (EditText) Utils.findViewId(thisContext, "txtCargCpt2Deadload");
+                    EditText txtCargCpt3Deadload = (EditText) Utils.findViewId(thisContext, "txtCargCpt3Deadload");
+                    EditText txtCargCpt4Deadload = (EditText) Utils.findViewId(thisContext, "txtCargCpt4Deadload");
+                    EditText txtCargCpt5Deadload = (EditText) Utils.findViewId(thisContext, "txtCargCpt5Deadload");
+                    EditText txtPaxOATotal       = (EditText) Utils.findViewId(thisContext, "txtPaxOATotal");
+                    EditText txtPaxOBTotal       = (EditText) Utils.findViewId(thisContext, "txtPaxOBTotal");
+                    EditText txtPaxOCTotal       = (EditText) Utils.findViewId(thisContext, "txtPaxOCTotal");
+                    EditText txtZfwIndex         = (EditText) Utils.findViewId(thisContext, "txtZfwIndex");
+
+                    double index        = 0;
+                    double cpt1Deadload = 0;
+                    double cpt2Deadload = 0;
+                    double cpt3Deadload = 0;
+                    double cpt4Deadload = 0;
+                    double cpt5Deadload = 0;
+                    double paxOATotal   = 0;
+                    double paxOBTotal   = 0;
+                    double paxOCTotal   = 0;
+
+                    try{
+                        index = Double.parseDouble(txtIndex.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        index = 0;
+                    }
+
+                    try{
+                        cpt1Deadload = Double.parseDouble(txtCargCpt1Deadload.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        cpt1Deadload = 0;
+                    }
+
+                    try{
+                        cpt2Deadload = Double.parseDouble(txtCargCpt2Deadload.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        cpt2Deadload = 0;
+                    }
+
+                    try{
+                        cpt3Deadload = Double.parseDouble(txtCargCpt3Deadload.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        cpt3Deadload = 0;
+                    }
+
+                    try{
+                        cpt4Deadload = Double.parseDouble(txtCargCpt4Deadload.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        cpt4Deadload = 0;
+                    }
+
+                    try{
+                        cpt5Deadload = Double.parseDouble(txtCargCpt5Deadload.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        cpt5Deadload = 0;
+                    }
+
+                    try{
+                        paxOATotal = Double.parseDouble(txtPaxOATotal.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        paxOATotal = 0;
+                    }
+
+                    try{
+                        paxOBTotal = Double.parseDouble(txtPaxOBTotal.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        paxOBTotal = 0;
+                    }
+
+                    try{
+                        paxOCTotal = Double.parseDouble(txtPaxOCTotal.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        paxOCTotal = 0;
+                    }
+
+                    double zfwIndex = index + cpt1Deadload + cpt2Deadload + cpt3Deadload + cpt4Deadload + cpt5Deadload +paxOATotal + paxOBTotal + paxOCTotal;
+                    BigDecimal zfwIndexDecimal = BigDecimal.valueOf(zfwIndex).setScale(1, RoundingMode.CEILING);
+                    txtZfwIndex.setText(zfwIndexDecimal.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+
+
+
         EditText txtPaxOBCount               = this.editTexts.get("txtPaxOBCount");
         EditText txtPaxOBMultiplyAdultWeight = this.editTexts.get("txtPaxOBMultiplyAdultWeight");
         EditText txtPaxOBTotal               = this.editTexts.get("txtPaxOBTotal");
@@ -169,6 +282,115 @@ public class PaxZone {
             }
         });
 
+        txtPaxOBTotal.addTextChangedListener(new TextWatcher() {
+
+            private PaxZoneDto paxZoneDto = PaxZone.this.paxZoneDto;
+            private String preText;
+            private AppCompatActivity thisContext = PaxZone.this.context;
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                preText = charSequence.toString();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (!charSequence.toString().equals("")) {
+                    EditText txtIndex            = (EditText) Utils.findViewId(thisContext, "txtIndex");
+                    EditText txtCargCpt1Deadload = (EditText) Utils.findViewId(thisContext, "txtCargCpt1Deadload");
+                    EditText txtCargCpt2Deadload = (EditText) Utils.findViewId(thisContext, "txtCargCpt2Deadload");
+                    EditText txtCargCpt3Deadload = (EditText) Utils.findViewId(thisContext, "txtCargCpt3Deadload");
+                    EditText txtCargCpt4Deadload = (EditText) Utils.findViewId(thisContext, "txtCargCpt4Deadload");
+                    EditText txtCargCpt5Deadload = (EditText) Utils.findViewId(thisContext, "txtCargCpt5Deadload");
+                    EditText txtPaxOATotal       = (EditText) Utils.findViewId(thisContext, "txtPaxOATotal");
+                    EditText txtPaxOBTotal       = (EditText) Utils.findViewId(thisContext, "txtPaxOBTotal");
+                    EditText txtPaxOCTotal       = (EditText) Utils.findViewId(thisContext, "txtPaxOCTotal");
+                    EditText txtZfwIndex         = (EditText) Utils.findViewId(thisContext, "txtZfwIndex");
+
+                    double index        = 0;
+                    double cpt1Deadload = 0;
+                    double cpt2Deadload = 0;
+                    double cpt3Deadload = 0;
+                    double cpt4Deadload = 0;
+                    double cpt5Deadload = 0;
+                    double paxOATotal   = 0;
+                    double paxOBTotal   = 0;
+                    double paxOCTotal   = 0;
+
+                    try{
+                        index = Double.parseDouble(txtIndex.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        index = 0;
+                    }
+
+                    try{
+                        cpt1Deadload = Double.parseDouble(txtCargCpt1Deadload.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        cpt1Deadload = 0;
+                    }
+
+                    try{
+                        cpt2Deadload = Double.parseDouble(txtCargCpt2Deadload.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        cpt2Deadload = 0;
+                    }
+
+                    try{
+                        cpt3Deadload = Double.parseDouble(txtCargCpt3Deadload.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        cpt3Deadload = 0;
+                    }
+
+                    try{
+                        cpt4Deadload = Double.parseDouble(txtCargCpt4Deadload.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        cpt4Deadload = 0;
+                    }
+
+                    try{
+                        cpt5Deadload = Double.parseDouble(txtCargCpt5Deadload.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        cpt5Deadload = 0;
+                    }
+
+                    try{
+                        paxOATotal = Double.parseDouble(txtPaxOATotal.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        paxOATotal = 0;
+                    }
+
+                    try{
+                        paxOBTotal = Double.parseDouble(txtPaxOBTotal.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        paxOBTotal = 0;
+                    }
+
+                    try{
+                        paxOCTotal = Double.parseDouble(txtPaxOCTotal.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        paxOCTotal = 0;
+                    }
+
+                    double zfwIndex = index + cpt1Deadload + cpt2Deadload + cpt3Deadload + cpt4Deadload + cpt5Deadload +paxOATotal + paxOBTotal + paxOCTotal;
+                    BigDecimal zfwIndexDecimal = BigDecimal.valueOf(zfwIndex).setScale(1, RoundingMode.CEILING);
+                    txtZfwIndex.setText(zfwIndexDecimal.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+
         EditText txtPaxOCCount               = this.editTexts.get("txtPaxOCCount");
         EditText txtPaxOCMultiplyAdultWeight = this.editTexts.get("txtPaxOCMultiplyAdultWeight");
         EditText txtPaxOCTotal               = this.editTexts.get("txtPaxOCTotal");
@@ -197,6 +419,115 @@ public class PaxZone {
                     txtPaxOCMultiplyAdultWeight.setText(this.paxZoneDto.getPaxOC().getWeightForParts().toString());
                     txtPaxOCTotal.setText(this.paxZoneDto.getPaxOC().getValue().toString());
                     txtPaxTtlCount.setText(String.valueOf(this.paxZoneDto.getTtl()));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+
+        txtPaxOCTotal.addTextChangedListener(new TextWatcher() {
+
+            private PaxZoneDto paxZoneDto = PaxZone.this.paxZoneDto;
+            private String preText;
+            private AppCompatActivity thisContext = PaxZone.this.context;
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                preText = charSequence.toString();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (!charSequence.toString().equals("")) {
+                    EditText txtIndex            = (EditText) Utils.findViewId(thisContext, "txtIndex");
+                    EditText txtCargCpt1Deadload = (EditText) Utils.findViewId(thisContext, "txtCargCpt1Deadload");
+                    EditText txtCargCpt2Deadload = (EditText) Utils.findViewId(thisContext, "txtCargCpt2Deadload");
+                    EditText txtCargCpt3Deadload = (EditText) Utils.findViewId(thisContext, "txtCargCpt3Deadload");
+                    EditText txtCargCpt4Deadload = (EditText) Utils.findViewId(thisContext, "txtCargCpt4Deadload");
+                    EditText txtCargCpt5Deadload = (EditText) Utils.findViewId(thisContext, "txtCargCpt5Deadload");
+                    EditText txtPaxOATotal       = (EditText) Utils.findViewId(thisContext, "txtPaxOATotal");
+                    EditText txtPaxOBTotal       = (EditText) Utils.findViewId(thisContext, "txtPaxOBTotal");
+                    EditText txtPaxOCTotal       = (EditText) Utils.findViewId(thisContext, "txtPaxOCTotal");
+                    EditText txtZfwIndex         = (EditText) Utils.findViewId(thisContext, "txtZfwIndex");
+
+                    double index        = 0;
+                    double cpt1Deadload = 0;
+                    double cpt2Deadload = 0;
+                    double cpt3Deadload = 0;
+                    double cpt4Deadload = 0;
+                    double cpt5Deadload = 0;
+                    double paxOATotal   = 0;
+                    double paxOBTotal   = 0;
+                    double paxOCTotal   = 0;
+
+                    try{
+                        index = Double.parseDouble(txtIndex.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        index = 0;
+                    }
+
+                    try{
+                        cpt1Deadload = Double.parseDouble(txtCargCpt1Deadload.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        cpt1Deadload = 0;
+                    }
+
+                    try{
+                        cpt2Deadload = Double.parseDouble(txtCargCpt2Deadload.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        cpt2Deadload = 0;
+                    }
+
+                    try{
+                        cpt3Deadload = Double.parseDouble(txtCargCpt3Deadload.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        cpt3Deadload = 0;
+                    }
+
+                    try{
+                        cpt4Deadload = Double.parseDouble(txtCargCpt4Deadload.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        cpt4Deadload = 0;
+                    }
+
+                    try{
+                        cpt5Deadload = Double.parseDouble(txtCargCpt5Deadload.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        cpt5Deadload = 0;
+                    }
+
+                    try{
+                        paxOATotal = Double.parseDouble(txtPaxOATotal.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        paxOATotal = 0;
+                    }
+
+                    try{
+                        paxOBTotal = Double.parseDouble(txtPaxOBTotal.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        paxOBTotal = 0;
+                    }
+
+                    try{
+                        paxOCTotal = Double.parseDouble(txtPaxOCTotal.getText().toString());
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        paxOCTotal = 0;
+                    }
+
+                    double zfwIndex = index + cpt1Deadload + cpt2Deadload + cpt3Deadload + cpt4Deadload + cpt5Deadload +paxOATotal + paxOBTotal + paxOCTotal;
+                    BigDecimal zfwIndexDecimal = BigDecimal.valueOf(zfwIndex).setScale(1, RoundingMode.CEILING);
+                    txtZfwIndex.setText(zfwIndexDecimal.toString());
                 }
             }
 

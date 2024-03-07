@@ -21,7 +21,7 @@ public class Passenger {
     public Passenger(AppCompatActivity context, Type type) {
         this.context         = context;
         this.repository      = new PassengerRepository();
-        this.passengerDto = new PassengerDto(repository.findByTypeSeq(type.getSeq()));
+        this.passengerDto    = new PassengerDto(repository.findByTypeSeq(type.getSeq()));
         this.editTexts       = new LinkedHashMap<>();
         this.editTexts.put("txtAdult", (EditText) Utils.findViewId(this.context, "txtAdult"));
 

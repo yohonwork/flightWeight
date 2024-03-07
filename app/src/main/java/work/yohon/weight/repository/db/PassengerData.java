@@ -7,6 +7,7 @@ import work.yohon.weight.repository.entity.Passenger;
 
 public class PassengerData {
     public static LinkedList<Passenger> repository = new LinkedList<>(Arrays.asList(
-        new Passenger(1, 1, 75, 35, 8, 0)
+              new Passenger(1, 1, 75, 35, 8, 0)
+            , new Passenger(2, 2, 75, 35, 8, 0)
     ));
 }

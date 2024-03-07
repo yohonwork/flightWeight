@@ -1,5 +1,7 @@
 package work.yohon.weight.template.passenger;
 
+import static work.yohon.weight.common.Utils.isNull;
+
 public class PassengerDto {
     private final PassengerAdult passengerAdult;
     private final PassengerChild passengerChild;
@@ -7,6 +9,9 @@ public class PassengerDto {
     private final PassengerCabinBag passengerCabinBagDto;
 
     public PassengerDto(work.yohon.weight.repository.entity.Passenger passenger) {
+        if (isNull(passenger)) {
+            throw new IllegalArgumentException("passenger is Null");
+        }
         this.passengerAdult    = new PassengerAdult(0, passenger.getAdultWeight());
         this.passengerChild    = new PassengerChild(0, passenger.getChildWeight());
         this.passengerInfants  = new PassengerInf(0, passenger.getInfantsWeight());
